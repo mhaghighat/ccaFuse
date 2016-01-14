@@ -92,12 +92,16 @@ end
 [eigVecs, eigVals] = eig(C);
 eigVals = abs(diag(eigVals));
 
+% Ignore zero eigenvalues
 maxEigVal = max(eigVals);
 zeroEigIdx = find((eigVals/maxEigVal)<1e-6);
 eigVals(zeroEigIdx) = [];
 eigVecs(:,zeroEigIdx) = [];
 
-eigVecs = fliplr(eigVecs); % Sort in descending order
+% Sort in descending order
+[~,index] = sort(eigVals,'descend');
+eigVals = eigVals(index);
+eigVecs = eigVecs(:,index);
 
 % Obtain the projection matrix
 if n >= p
@@ -125,12 +129,16 @@ end
 [eigVecs, eigVals] = eig(C);
 eigVals = abs(diag(eigVals));
 
+% Ignore zero eigenvalues
 maxEigVal = max(eigVals);
 zeroEigIndex = find((eigVals/maxEigVal)<1e-6);
 eigVals(zeroEigIndex) = [];
 eigVecs(:,zeroEigIndex) = [];
 
-eigVecs = fliplr(eigVecs); % Sort in descending order
+% Sort in descending order
+[~,index] = sort(eigVals,'descend');
+eigVals = eigVals(index);
+eigVecs = eigVecs(:,index);
 
 % Obtain the projection matrix
 if n >= q
