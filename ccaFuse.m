@@ -68,15 +68,18 @@ if size(testX,1) ~= size(testY,1)
 end
 
 if ~exist('mode', 'var')
-    mode = 'sum';   % Default fusion mode
+    mode = 'sum';	% Default fusion mode
 end
 
 
-% Center the variables
-trainX = bsxfun(@minus, trainX, mean(trainX));
-testX = bsxfun(@minus, testX, mean(trainX));
-trainY = bsxfun(@minus, trainY, mean(trainY));
-testY = bsxfun(@minus, testY, mean(trainY));
+%% Center the variables
+
+meanX = mean(trainX);
+meanY = mean(trainY);
+trainX = bsxfun(@minus, trainX, meanX);
+testX  = bsxfun(@minus, testX,  meanX);
+trainY = bsxfun(@minus, trainY, meanY);
+testY  = bsxfun(@minus, testY,  meanY);
 
 
 %% Dimensionality reduction using PCA for the first data X
@@ -163,8 +166,8 @@ testXcca = testX * Wxcca;
 testYcca = testY * Wycca;
 
 if strcmp(mode, 'concat')	% Fusion by concatenation (Z1)
-    trainZ = [trainXcca , trainYcca];
-    testZ  = [testXcca , testYcca];
+    trainZ = [trainXcca, trainYcca];
+    testZ  = [testXcca, testYcca];
 else                        % Fusion by summation (Z2)
     trainZ = trainXcca + trainYcca;
     testZ  = testXcca + testYcca;
