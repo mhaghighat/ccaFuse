@@ -12,3 +12,5 @@ http://dx.doi.org/10.1016/j.eswa.2015.10.047
 (C)	Mohammad Haghighat, University of Miami
       	haghighat@ieee.org
       	PLEASE CITE THE ABOVE PAPER IF YOU USE THIS CODE.
+
+[![View Feature fusion using Canonical Correlation Analysis (CCA) on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/54681-feature-fusion-using-canonical-correlation-analysis-cca)
